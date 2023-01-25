@@ -1,10 +1,8 @@
 <template>
   <div class="root">
-  <br>
-    <br>
     <img src="../assets/logo.png" alt="lil's" style="width: 6rem" class="w-24">
-    <br>
-    <h1 class="text-3xl font-sans">Work</h1>
+    <span class="text-xs font-sans">Work</span>
+    <el-calendar />
   </div>
 </template>
 
