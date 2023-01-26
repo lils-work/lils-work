@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
-import Home from './pages/Home.vue';
+
+import { createRouter, createWebHistory } from 'vue-router'
 import ElementPlus from "element-plus";
-import './style.css'
 import 'element-plus/dist/index.css';
+
+import Home from './pages/Home.vue';
 
 const routes = [
   { path: '', component: Home },

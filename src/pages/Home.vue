@@ -1,7 +1,9 @@
 <template>
   <div class="root">
-    <img src="../assets/logo.png" alt="lil's" style="width: 6rem" class="w-24">
-    <span class="text-xs font-sans">Work</span>
+    <div class="title">
+      <img src="../assets/logo.png" alt="lil's" style="width: 6rem" class="w-24">
+      <span class="text-xs font-sans">Work</span>
+    </div>
     <el-calendar />
   </div>
 </template>
@@ -11,7 +13,9 @@
 
 <style scoped lang="scss">
 .root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
+  .title {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
 }
 </style>
