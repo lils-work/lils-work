@@ -5,6 +5,9 @@
       <span class="text-xs font-sans">Work</span>
     </div>
     <el-calendar />
+    <div style="display: flex; justify-content: center;">
+      <el-link href="https://beian.miit.gov.cn/">鄂ICP备20001882号-2</el-link>
+    </div>
   </div>
 </template>
 
