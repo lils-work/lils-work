@@ -23,7 +23,7 @@ import { TaskState } from '../models/TaskState';
 const tasks = ref<{ id: number, title: string, state: TaskState }[]>([]);
 
 onMounted(async () => {
-  var r = await fetch('http://localhost:5286/task');
+  var r = await fetch('http://api.lils.work/task');
   var t = await r.json();
 
   tasks.value = t;
