@@ -6,8 +6,11 @@
     </div>
     <el-calendar />
     <div>
-      <!-- TODO: task.state 的变动无法更新到 Check 状态 -->
-      <el-checkbox v-for="task in tasks" :label="task.title" :checked="task.state == TaskState.Done"></el-checkbox>
+      <!-- task.state 的变动无法更新到 ElCheckBox.Check，因此使用了原生 CheckBox -->
+      <div v-for="task in tasks">
+        <input :id="task.title" type="checkbox" v-model="(task.state as any)" :true-value="TaskState.Done" :false-value="TaskState.Todo" @change="updateState(task)">
+        <label :for="task.title">{{ task.title }}</label>
+      </div>
     </div>
     <div style="display: flex; justify-content: center;">
       <el-link href="https://beian.miit.gov.cn/">鄂ICP备20001882号-2</el-link>
@@ -28,6 +31,14 @@ onMounted(async () => {
 
   tasks.value = t;
 });
+
+async function updateState(task: { id: number, title: string, state: TaskState }) {
+  await fetch('http://api.lils.work/task', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(task),
+  });
+}
 </script>
 
 <style scoped lang="scss">
