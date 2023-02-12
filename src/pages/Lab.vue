@@ -22,17 +22,18 @@
         </div>
       </el-col>
     </el-row>
+    <el-calendar />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { ElRow, ElCol, ElCheckbox } from 'element-plus';
+import { ElRow, ElCol, ElCheckbox, ElCalendar } from 'element-plus';
 import { ApiService } from '../services/ApiService';
 import { PlanCycle } from '../models/PlanCycle';
 
 const cols = ref(2);
-const tasks = ref<{ id: number, title: string, dueTo:Date, isCompleted: boolean, isCancel: boolean }[]>([]);
+const tasks = ref<{ id: number, title: string, dueTo: Date, isCompleted: boolean, isCancel: boolean }[]>([]);
 const taskplans = ref<{ id: number, title: string, cycle: PlanCycle }[]>([]);
 const newPlanTitle = ref('');
 
@@ -48,7 +49,7 @@ onMounted(async () => {
   taskplans.value = pt;
 });
 
-async function updateState(task: { id: number, title: string, dueTo:Date, isCompleted: boolean, isCancel: boolean }) {
+async function updateState(task: { id: number, title: string, dueTo: Date, isCompleted: boolean, isCancel: boolean }) {
   await fetch(`${ApiService.url}/task`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
