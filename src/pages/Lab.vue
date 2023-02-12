@@ -14,18 +14,19 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { TaskState } from '../models/TaskState';
+import { ApiService } from '../services/ApiService';
 
 const tasks = ref<{ id: number, title: string, state: TaskState }[]>([]);
 
 onMounted(async () => {
-  var r = await fetch('http://api.lils.work/task');
+  var r = await fetch(`${ApiService.url}/task`);
   var t = await r.json();
 
   tasks.value = t;
 });
 
 async function updateState(task: { id: number, title: string, state: TaskState }) {
-  await fetch('http://api.lils.work/task', {
+  await fetch(`${ApiService.url}/task`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(task),
