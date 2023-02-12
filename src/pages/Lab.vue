@@ -3,11 +3,10 @@
     <el-row>
       <el-col :span="24 / cols">
         <div>
-          <!-- task.state 的变动无法更新到 ElCheckBox.Check，因此使用了原生 CheckBox -->
           <div v-for="task in tasks">
-            <input :id="task.title" type="checkbox" v-model="(task.state as any)" :true-value="TaskState.Done"
-              :false-value="TaskState.Todo" @change="updateState(task)">
-            <label :for="task.title">{{ task.title }}</label>
+            <el-checkbox :id="task.title" v-model="task.isCompleted" @change="updateState(task)">
+              {{ task.title }} | {{ task.dueTo }}
+            </el-checkbox>
           </div>
         </div>
       </el-col>
@@ -28,13 +27,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { ElRow, ElCol } from 'element-plus';
-import { TaskState } from '../models/TaskState';
+import { ElRow, ElCol, ElCheckbox } from 'element-plus';
 import { ApiService } from '../services/ApiService';
+import { PlanCycle } from '../models/PlanCycle';
 
 const cols = ref(2);
-const tasks = ref<{ id: number, title: string, state: TaskState }[]>([]);
-const taskplans = ref<{ id: number, title: string, cycle: any }[]>([]);
+const tasks = ref<{ id: number, title: string, dueTo:Date, isCompleted: boolean, isCancel: boolean }[]>([]);
+const taskplans = ref<{ id: number, title: string, cycle: PlanCycle }[]>([]);
 const newPlanTitle = ref('');
 
 onMounted(async () => {
@@ -49,7 +48,7 @@ onMounted(async () => {
   taskplans.value = pt;
 });
 
-async function updateState(task: { id: number, title: string, state: TaskState }) {
+async function updateState(task: { id: number, title: string, dueTo:Date, isCompleted: boolean, isCancel: boolean }) {
   await fetch(`${ApiService.url}/task`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
