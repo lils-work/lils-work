@@ -20,14 +20,16 @@ const texts = [
 ];
 
 onMounted(() => {
-  var index = 0;
   clearInterval(intervalId);
-  intervalId = setInterval(() => {
-    text.value = texts[index];
-    index++;
-    index %= texts.length;
-  }, 5000);
+  updateText();
+  intervalId = setInterval(updateText, 5000);
 });
+
+var index = 0;
+function updateText() {
+  text.value = texts[index++];
+  index %= texts.length;
+}
 </script>
 
 <style scoped lang="scss">
