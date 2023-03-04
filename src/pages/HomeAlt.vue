@@ -4,6 +4,9 @@
       <el-scrollbar>
         <div>
           <el-card>
+            <Task></Task>
+          </el-card>
+          <el-card>
             <Time></Time>
           </el-card>
           <el-card>
@@ -25,6 +28,7 @@
 
 <script setup lang="ts">
 import { ElContainer, ElAside, ElScrollbar, ElHeader, ElMain, ElLink, ElCard } from 'element-plus';
+import Task from "../gadgets/Task.vue";
 import Time from "../gadgets/Time.vue";
 import Text from "../gadgets/Text.vue";
 </script>
