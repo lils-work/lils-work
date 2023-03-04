@@ -21,6 +21,7 @@ onMounted(() => {
     { title: '随手任务添加标记，表示可以快速完成', isCompleted: false },
     { title: '从服务获取任务', isCompleted: false },
     { title: '更新任务状态', isCompleted: false },
+    { title: '长按拖拽调整顺序', isCompleted: false },
     { title: '登录', isCompleted: false },
     { title: '添加任务', isCompleted: false },
     { title: '周期性任务的自动创建', isCompleted: false },
@@ -29,6 +30,8 @@ onMounted(() => {
     { title: '记录任务完成时间', isCompleted: false },
     { title: '说明：这里管理的是零散任务和周期性任务', isCompleted: false },
     { title: '说明：具有目的性的计划任务，应该由更专业的工具来管理', isCompleted: false },
+    { title: '本任务的主条目位于 Trello： https://trello.com/c/EW9LAB3A', isCompleted: false },
+    { title: '将 Trello 中指定列表的任务也列在这里', isCompleted: false },
   ]
 });
 </script>
