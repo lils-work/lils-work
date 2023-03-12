@@ -1,14 +1,17 @@
 <template>
   <div class="root">
     <div v-for="task of tasks">
-      <el-checkbox :checked="task.isCompleted">{{ task.title }}</el-checkbox>
+      <el-space style="margin: 0.3rem 0;">
+        <el-checkbox :checked="task.isCompleted" />
+        <span style="margin-left: 0.5rem;">{{ task.title }}</span>
+      </el-space>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { ElCheckbox } from 'element-plus';
+import { ElCheckbox, ElSpace } from 'element-plus';
 
 const tasks = ref<any[]>();
 
@@ -16,7 +19,7 @@ onMounted(() => {
   tasks.value = [
     { title: '随手：每个任务放一行', isCompleted: true },
     { title: '随手：手机上应该显示满屏宽度', isCompleted: true },
-    { title: '随手：文字较多时应该换行，比如这行文字在小屏设备上很不友好', isCompleted: false },
+    { title: '随手：文字较多时应该换行，比如这行文字在小屏设备上很不友好', isCompleted: true },
     { title: '随手：应该设置最大行数，超过时显示滚动条', isCompleted: false },
     { title: '随手：添加按钮，切换是否将已完成任务放在后面', isCompleted: false },
     { title: '随手：像 cn.bing.com 那样，屏蔽某些浏览器的下拉刷新机制', isCompleted: false },
@@ -42,5 +45,9 @@ onMounted(() => {
 <style scoped lang="scss">
 .root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+
+  .el-checkbox {
+    word-wrap: normal;
+  }
 }
 </style>
