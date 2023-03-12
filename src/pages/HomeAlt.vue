@@ -1,6 +1,6 @@
 <template>
   <el-container class="root">
-    <el-aside width="260px">
+    <el-aside>
       <el-scrollbar>
         <div>
           <el-card>
@@ -35,9 +35,25 @@ import Text from "../gadgets/Text.vue";
 
 <style scoped lang="scss">
 .root {
-  .el-card {
-    margin: 0.5rem auto;
-    width: 240px;
+  .el-aside {
+    width: 18rem;
+
+    .el-card {
+      margin: 0.5rem auto;
+      width: 17rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .root {
+    .el-aside {
+      width: 100%;
+
+      .el-card {
+        width: calc(100% - 0.5rem);
+      }
+    }
   }
 }
 </style>
