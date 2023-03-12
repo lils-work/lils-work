@@ -1,6 +1,8 @@
 <template>
   <div class="root">
-    <el-checkbox v-for="task of tasks">{{ task.title }}</el-checkbox>
+    <div v-for="task of tasks">
+      <el-checkbox :checked="task.isCompleted">{{ task.title }}</el-checkbox>
+    </div>
   </div>
 </template>
 
@@ -12,7 +14,7 @@ const tasks = ref<any[]>();
 
 onMounted(() => {
   tasks.value = [
-    { title: '随手：每个任务放一行', isCompleted: false },
+    { title: '随手：每个任务放一行', isCompleted: true },
     { title: '随手：手机上应该显示满屏宽度', isCompleted: false },
     { title: '随手：文字较多时应该换行，比如这行文字在小屏设备上很不友好', isCompleted: false },
     { title: '随手：应该设置最大行数，超过时显示滚动条', isCompleted: false },
