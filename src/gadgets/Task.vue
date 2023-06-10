@@ -4,6 +4,12 @@
       <el-space style="margin: 0.3rem 0;">
         <el-checkbox :checked="task.isCompleted" />
         <span style="margin-left: 0.5rem;">{{ task.title }}</span>
+        <el-icon :size="16" color="gray" v-if="task.isEasy">
+          <Lollipop />
+        </el-icon>
+        <el-icon :size="16" color="gray" v-if="task.isPeriodic">
+          <Flag />
+        </el-icon>
       </el-space>
     </div>
   </div>
@@ -11,7 +17,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { ElCheckbox, ElSpace } from 'element-plus';
+import { ElCheckbox, ElSpace, ElIcon } from 'element-plus';
+import { Lollipop, Flag } from '@element-plus/icons-vue';
 
 const tasks = ref<any[]>();
 
@@ -22,14 +29,14 @@ onMounted(() => {
     { title: '随手：文字较多时应该换行，比如这行文字在小屏设备上很不友好', isCompleted: true },
     { title: '随手：应该设置最大行数，超过时显示滚动条', isCompleted: true },
     { title: '随手：将已完成任务放在后面', isCompleted: true },
-    { title: '随手任务添加标记，表示可以快速完成', isCompleted: false },
-    { title: '周期任务添加标记，表示将周期性地生成', isCompleted: false },
+    { title: '随手任务添加标记，表示可以快速完成', isCompleted: true, isEasy: true },
+    { title: '周期任务添加标记，表示将周期性地生成', isCompleted: true, isPeriodic: true },
     { title: '从服务获取任务', isCompleted: false },
     { title: '更新任务状态', isCompleted: false },
     { title: '添加任务', isCompleted: false },
     { title: '登录', isCompleted: false },
     { title: '周期性任务的自动创建', isCompleted: false },
-    { title: '随手：像 cn.bing.com 那样，屏蔽某些浏览器的下拉刷新机制', isCompleted: false },
+    { title: '像 cn.bing.com 那样，屏蔽某些浏览器的下拉刷新机制', isCompleted: false, isEasy: true },
     { title: '长按拖拽调整顺序，参考 https://hcg1023.github.io/vue3-dnd/', isCompleted: false },
     { title: '任务统计（在日历中显示每天任务的完成情况）', isCompleted: false },
     { title: '切换到 HTTPS', isCompleted: false },
