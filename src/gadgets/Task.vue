@@ -20,7 +20,7 @@ onMounted(() => {
     { title: '随手：每个任务放一行', isCompleted: true },
     { title: '随手：手机上应该显示满屏宽度', isCompleted: true },
     { title: '随手：文字较多时应该换行，比如这行文字在小屏设备上很不友好', isCompleted: true },
-    { title: '随手：应该设置最大行数，超过时显示滚动条', isCompleted: false },
+    { title: '随手：应该设置最大行数，超过时显示滚动条', isCompleted: true },
     { title: '随手：添加按钮，切换是否将已完成任务放在后面', isCompleted: false },
     { title: '随手：像 cn.bing.com 那样，屏蔽某些浏览器的下拉刷新机制', isCompleted: false },
     { title: '随手任务添加标记，表示可以快速完成', isCompleted: false },
