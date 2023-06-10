@@ -12,6 +12,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { ElCheckbox, ElSpace } from 'element-plus';
+import { tr } from 'element-plus/es/locale';
 
 const tasks = ref<any[]>();
 
@@ -21,7 +22,7 @@ onMounted(() => {
     { title: '随手：手机上应该显示满屏宽度', isCompleted: true },
     { title: '随手：文字较多时应该换行，比如这行文字在小屏设备上很不友好', isCompleted: true },
     { title: '随手：应该设置最大行数，超过时显示滚动条', isCompleted: true },
-    { title: '随手：添加按钮，切换是否将已完成任务放在后面', isCompleted: false },
+    { title: '随手：将已完成任务放在后面', isCompleted: true },
     { title: '随手：像 cn.bing.com 那样，屏蔽某些浏览器的下拉刷新机制', isCompleted: false },
     { title: '随手任务添加标记，表示可以快速完成', isCompleted: false },
     { title: '周期任务添加标记，表示将周期性地生成', isCompleted: false },
@@ -39,6 +40,12 @@ onMounted(() => {
     { title: '本任务的主条目位于 Trello： https://trello.com/c/EW9LAB3A', isCompleted: false },
     { title: '将 Trello 中指定列表的任务也列在这里', isCompleted: false },
   ]
+
+  tasks.value.sort((a, b) => {
+    var ac = a.isCompleted ? 1 : 0;
+    var bc = b.isCompleted ? 1 : 0;
+    return ac - bc;
+  });
 });
 </script>
 
