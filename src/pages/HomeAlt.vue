@@ -48,6 +48,23 @@ import Text from "../gadgets/Text.vue";
         max-height: 12rem;
       }
     }
+
+    /* 出现滚动条时，去掉 card 的内边距，改为设置内容的外边距 */
+    .el-card:has(.el-scrollbar) {
+      --el-card-padding: 0px;
+
+      .el-scrollbar {
+        .el-scrollbar__view {
+
+          // 在这里设置 margin 及 padding 均不起作用
+          // 会出现横向滚动条，原因未知，即使在本级或子级设置宽度，仍不能解决该问题
+
+          * {
+            margin: 20px;
+          }
+        }
+      }
+    }
   }
 }
 
