@@ -12,7 +12,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { ElCheckbox, ElSpace } from 'element-plus';
-import { tr } from 'element-plus/es/locale';
 
 const tasks = ref<any[]>();
 
