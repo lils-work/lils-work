@@ -9,6 +9,11 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-input v-model="newTaskTitle" style="width: 20rem; margin-top: 2rem;">
+        <template #append>
+          <el-button :icon="Plus" @click="AddTask()" />
+        </template>
+      </el-input>
     </el-tab-pane>
     <el-tab-pane label="任务计划">
       <el-table :data="taskplans">
@@ -25,7 +30,8 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
-import { ElTabs, ElTabPane, ElTable, ElTableColumn } from 'element-plus';
+import { ElTabs, ElTabPane, ElTable, ElTableColumn, ElInput, ElButton, ElIcon } from 'element-plus';
+import { Plus } from '@element-plus/icons-vue';
 import moment from 'moment';
 import 'moment/dist/locale/zh-cn';
 import { ApiService } from '../services/ApiService';
@@ -33,18 +39,23 @@ import { PlanCycle } from '../models/PlanCycle';
 
 const tasks = ref<{ id: number, title: string, dueTo: Date, isCompleted: boolean, isCancel: boolean }[]>([]);
 const taskplans = ref<{ id: number, title: string, cycle: PlanCycle }[]>([]);
+const newTaskTitle = ref<string>('');
 
 onMounted(async () => {
-  var r = await fetch(`${ApiService.url}/task`);
-  var t = await r.json();
-
-  tasks.value = t;
+  updateTasks();
 
   var pr = await fetch(`${ApiService.url}/taskplan`);
   var pt = await pr.json();
 
   taskplans.value = pt;
 });
+
+async function updateTasks() {
+  var r = await fetch(`${ApiService.url}/task`);
+  var t = await r.json();
+
+  tasks.value = t;
+}
 
 function formatDueDate(date: Date): string {
   if (date != null) {
@@ -53,6 +64,20 @@ function formatDueDate(date: Date): string {
   }
 
   return "long term";
+}
+
+async function AddTask() {
+  var r = await fetch(`${ApiService.url}/task`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify([{
+      title: newTaskTitle.value
+    }]),
+  });
+  if (r.status == 201) {
+    updateTasks();
+    newTaskTitle.value = '';
+  }
 }
 
 </script>
