@@ -18,11 +18,8 @@
       </el-scrollbar>
     </el-aside>
     <el-container>
-      <el-header>
-
-      </el-header>
       <el-main>
-
+        <TaskManager/>
       </el-main>
     </el-container>
   </el-container>
@@ -33,6 +30,7 @@ import { ElContainer, ElAside, ElScrollbar, ElHeader, ElMain, ElLink, ElCard } f
 import Task from "../gadgets/Task.vue";
 import Time from "../gadgets/Time.vue";
 import Text from "../gadgets/Text.vue";
+import TaskManager from "../components/TaskManager.vue";
 </script>
 
 <style scoped lang="scss">
